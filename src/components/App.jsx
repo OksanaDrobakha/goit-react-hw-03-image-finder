@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import * as API from 'services/api';
-import Searchbar from 'components/Searchbar';
-import ImageGallery from 'components/ImageGallery';
-import Button from 'components/Button';
+import * as API from '../services/api';
+import Searchbar from './Searchbar/Searchbar';
+import ImageGallery from './ImageGallery/ImageGallery';
+import Button from './Button/Button';
 import Loader from './Loader/Loader';
 
 const API_KEY = '7922977-f75c622a4e63e95df060b06c8';
