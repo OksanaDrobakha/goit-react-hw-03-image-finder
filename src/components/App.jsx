@@ -44,7 +44,7 @@ export default class App extends Component {
 
   onSubmit = values => {
     if (values.search === this.state.searchValue) {
-      alert('Ви саме зараз це і шукаєте');
+      alert('В процесі пошуку');
       return;
     }
     this.setState({ searchValue: values.search, gallery: [], page: 1 });
@@ -74,9 +74,7 @@ export default class App extends Component {
         />
         {status === 'pending' && <Loader />}
         {gallery.length !== 0 && totalImgs > 12 && gallery.length % 2 === 0 && (
-          <Button onClick={this.onLoadMore} classname={'Button'}>
-            Load more
-          </Button>
+          <Button onClick={this.onLoadMore}>Load more</Button>
         )}
       </div>
     );

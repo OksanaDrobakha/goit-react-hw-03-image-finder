@@ -27,7 +27,7 @@ class ImageGalleryItem extends Component {
         />
         {this.state.isModalOpen && (
           <Modal onClose={this.closeModal}>
-            <img src={item.largeImageURL} alt={item.tags} loading="lazy" />;
+            <img src={item.largeImageURL} alt={item.tags} loading="lazy" />
           </Modal>
         )}
       </li>

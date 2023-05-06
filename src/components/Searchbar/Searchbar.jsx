@@ -9,7 +9,7 @@ const Searchbar = ({ onSubmit }) => {
   };
 
   return (
-    <header class="Searchbar">
+    <header className="Searchbar">
       <Formik initialValues={{ search: '' }} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="SearchForm" autoComplete="off">
@@ -19,7 +19,7 @@ const Searchbar = ({ onSubmit }) => {
               disabled={isSubmitting}
             >
               <span className="SearchForm-button-label">
-                <FcSearch />
+                <FcSearch size="42" />
               </span>
             </button>
             <Field
