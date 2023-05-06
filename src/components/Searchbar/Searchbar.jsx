@@ -1,5 +1,5 @@
 import { Formik, Form, Field } from 'formik';
-import { FcSearch } from 'react-icons/ai';
+import { FcSearch } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const Searchbar = ({ onSubmit }) => {
