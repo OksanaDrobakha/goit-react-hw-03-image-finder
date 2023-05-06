@@ -3,7 +3,7 @@ import * as API from '../services/api';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
-import Loader from './Loader/Loader';
+import { Loader } from './Loader/Loader';
 
 const API_KEY = '7922977-f75c622a4e63e95df060b06c8';
 
@@ -22,7 +22,7 @@ export default class App extends Component {
     if (prevState.searchValue !== searchValue || prevState.page !== page) {
       this.setState({ status: 'pending' });
       try {
-        const res = await API.searchImgs(searchValue, API_KEY, page);
+        const res = await API.searchImages(searchValue, API_KEY, page);
         if (res.totalHits === 0) {
           return this.setState({
             status: 'rejected',
