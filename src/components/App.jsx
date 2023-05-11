@@ -5,8 +5,6 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import { Loader } from './Loader/Loader';
 
-const API_KEY = '7922977-f75c622a4e63e95df060b06c8';
-
 export default class App extends Component {
   state = {
     gallery: [],
@@ -22,7 +20,7 @@ export default class App extends Component {
     if (prevState.searchValue !== searchValue || prevState.page !== page) {
       this.setState({ status: 'pending' });
       try {
-        const res = await API.searchImages(searchValue, API_KEY, page);
+        const res = await API.searchImages(searchValue, page);
         if (res.totalHits === 0) {
           return this.setState({
             status: 'rejected',
@@ -47,7 +45,12 @@ export default class App extends Component {
       alert('В процесі пошуку');
       return;
     }
-    this.setState({ searchValue: values.search, gallery: [], page: 1 });
+    this.setState({
+      searchValue: values.search,
+      gallery: [],
+      page: 1,
+      totalImgs: 0,
+    });
   };
 
   onLoadMore = () => {
@@ -60,20 +63,16 @@ export default class App extends Component {
       <div className="App">
         <Searchbar onSubmit={this.onSubmit} />
         {status === 'idle' && (
-          <p className="start-text">Please enter your request</p>
+          <p className="start-text">Будь ласка, введіть свій запит</p>
         )}
         {status === 'rejected' && (
           <p className="start-text">
-            Sorry, no result at your request "{searchValue}"
+            Щось пішло не так, спробуйте ще раз знайти "{searchValue}"
           </p>
         )}
-        <ImageGallery
-          items={gallery}
-          status={status}
-          searchValue={searchValue}
-        />
+        {!!gallery.length && <ImageGallery items={gallery} />}
         {status === 'pending' && <Loader />}
-        {gallery.length !== 0 && totalImgs > 12 && gallery.length % 2 === 0 && (
+        {status === 'resolved' && totalImgs !== gallery.length && (
           <Button onClick={this.onLoadMore}>Load more</Button>
         )}
       </div>
