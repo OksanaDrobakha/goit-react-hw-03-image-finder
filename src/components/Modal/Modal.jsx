@@ -7,11 +7,10 @@ const rootModal = document.querySelector('#root-modal');
 export default class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
-    document.querySelector('html').style.overflow = 'hidden';
   }
+
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
-    document.querySelector('html').style.overflow = 'visible';
   }
 
   onKeyDown = e => {
@@ -19,8 +18,12 @@ export default class Modal extends Component {
       this.props.onClose();
     }
   };
+
   onBackdropClick = e => {
-    if (e.currentTarget === e.target) {
+    // console.log('currentTarget:', e.currentTarget);
+    // console.log('target:', e.target);
+
+    if (e.target === e.currentTarget) {
       this.props.onClose();
     }
   };

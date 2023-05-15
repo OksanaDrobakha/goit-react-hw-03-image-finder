@@ -8,25 +8,24 @@ class ImageGalleryItem extends Component {
     isModalOpen: false,
   };
 
-  openModal = () => {
-    this.setState({ isModalOpen: true });
-  };
-  closeModal = () => {
-    this.setState({ isModalOpen: false });
+  toggleModal = () => {
+    this.setState(({ isModalOpen }) => ({
+      isModalOpen: !isModalOpen,
+    }));
   };
 
   render() {
     const { item } = this.props;
 
     return (
-      <li className="ImageGalleryItem" onClick={this.openModal}>
+      <li className="ImageGalleryItem" onClick={this.toggleModal}>
         <img
           src={item.webformatURL}
           alt={item.tags}
           className="ImageGalleryItem-image"
         />
         {this.state.isModalOpen && (
-          <Modal onClose={this.closeModal}>
+          <Modal onClose={this.toggleModal}>
             <img src={item.largeImageURL} alt={item.tags} loading="lazy" />
           </Modal>
         )}
