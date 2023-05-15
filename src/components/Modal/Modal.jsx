@@ -7,16 +7,10 @@ const rootModal = document.querySelector('#root-modal');
 export default class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
-    document
-      .querySelector('.Overlay')
-      .addEventListener('click', this.onBackdropClick);
     document.querySelector('html').style.overflow = 'hidden';
   }
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
-    document
-      .querySelector('.Overlay')
-      .removeEventListener('click', this.onBackdropClick);
     document.querySelector('html').style.overflow = 'visible';
   }
 
